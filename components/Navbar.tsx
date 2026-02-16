@@ -9,6 +9,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'My Approach', path: '/about' },
+    { name: 'Certifications', path: '/roadmap' },
     { name: 'Projects', path: '/projects' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -21,7 +22,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="p-2 bg-slate-900 rounded-lg group-hover:bg-blue-600 transition-colors">
+              <div className="p-2 bg-slate-900 rounded-lg transition-colors">
                 <Shield className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold tracking-tight text-slate-900">Chris Maricle</span>
