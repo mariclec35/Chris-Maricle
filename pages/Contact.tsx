@@ -1,56 +1,61 @@
-
-import React from 'react';
-import { Mail, Linkedin } from 'lucide-react';
+import React from "react";
+import { Mail, Linkedin, Github } from "lucide-react";
 
 const Contact: React.FC = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">Get In Touch</h1>
-        <p className="text-lg text-slate-600">
-          I'm always open to discussing new opportunities, security research, or technical collaborations.
+    <section className="max-w-4xl mx-auto px-6 py-16 text-slate-700 leading-relaxed">
+      <header className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-slate-900 tracking-tight">
+          Contact
+        </h1>
+        <div className="w-16 h-[2px] bg-slate-300 mx-auto mt-4"></div>
+        <p className="mt-6 text-lg text-slate-600">
+          Open to conversations related to networking, infrastructure, and
+          entry-level IT opportunities.
         </p>
-      </div>
+      </header>
 
-      <div className="max-w-md mx-auto">
-        {/* Contact Info */}
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-8">
-          <h2 className="text-2xl font-bold text-slate-900 text-center border-b border-slate-100 pb-4">Connect With Me</h2>
-          <div className="space-y-6">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
-                <Mail className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-slate-900">Email</p>
-                <a 
-                  href="mailto:mariclec35@gmail.com" 
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
-                >
-                  mariclec35@gmail.com
-                </a>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
-                <Linkedin className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-slate-900">LinkedIn</p>
-                <a 
-                  href="https://linkedin.com/in/chrismaricle" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
-                >
-                  linkedin.com/in/chrismaricle
-                </a>
-              </div>
-            </div>
-          </div>
+      <div className="space-y-8 max-w-xl mx-auto">
+
+        {/* Email */}
+        <div className="flex items-center gap-4">
+          <Mail className="w-5 h-5 text-slate-500" />
+          <a
+            href="mailto:mariclec35@gmail.com"
+            className="text-slate-800 font-medium hover:text-slate-600 transition"
+          >
+            mariclec35@gmail.com
+          </a>
         </div>
+
+        {/* LinkedIn */}
+        <div className="flex items-center gap-4">
+          <Linkedin className="w-5 h-5 text-slate-500" />
+          <a
+            href="https://www.linkedin.com/in/chrismaricle"
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-800 font-medium hover:text-slate-600 transition"
+          >
+            linkedin.com/in/chrismaricle
+          </a>
+        </div>
+
+        {/* GitHub */}
+        <div className="flex items-center gap-4">
+          <Github className="w-5 h-5 text-slate-500" />
+          <a
+            href="https://github.com/mariclec35"
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-800 font-medium hover:text-slate-600 transition"
+          >
+            github.com/mariclec35
+          </a>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
