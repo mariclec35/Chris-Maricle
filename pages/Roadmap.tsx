@@ -1,137 +1,174 @@
-import React from 'react';
+import React from "react";
+import { ExternalLink, CheckCircle2, Clock } from "lucide-react";
 
-const Roadmap: React.FC = () => {
+type CertStatus = "Certified" | "In Progress" | "Planned";
+
+type Certification = {
+  name: string;
+  status: CertStatus;
+  year?: string;
+  verificationUrl?: string;
+};
+
+type CertCategory = {
+  title: string;
+  description?: string;
+  items: Certification[];
+};
+
+const badgeStyles = (status: CertStatus) => {
+  switch (status) {
+    case "Certified":
+      return {
+        className: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        icon: <CheckCircle2 className="w-4 h-4 mr-2" />,
+      };
+    case "In Progress":
+      return {
+        className: "bg-blue-50 text-blue-700 border-blue-200",
+        icon: <Clock className="w-4 h-4 mr-2" />,
+      };
+    default:
+      return {
+        className: "bg-slate-50 text-slate-700 border-slate-200",
+        icon: <Clock className="w-4 h-4 mr-2" />,
+      };
+  }
+};
+
+const categories: CertCategory[] = [
+  {
+    title: "Core Networking Foundation",
+    description:
+      "Networking fundamentals and infrastructure baseline used across IT and security domains.",
+    items: [
+      { name: "CompTIA Network+", status: "In Progress" },
+    ],
+  },
+  {
+    title: "Security Fundamentals",
+    description:
+      "Security foundations, core controls, and operational fundamentals for modern environments.",
+    items: [
+      { name: "CompTIA Security+", status: "Planned" },
+    ],
+  },
+  {
+    title: "Cloud & Infrastructure",
+    description:
+      "Foundational cloud and infrastructure concepts for modern hybrid environments.",
+    items: [
+      { name: "CompTIA Cloud+", status: "Planned" },
+    ],
+  },
+  {
+    title: "Microsoft",
+    description:
+      "Microsoft Technology Associate (MTA) certifications earned previously (Credly verified).",
+    items: [
+      {
+        name: "MTA: Security Fundamentals",
+        status: "Certified",
+        year: "2016",
+        verificationUrl:
+          "https://www.credly.com/badges/9610bddb-eb75-4575-8224-3dc3f83b64a6",
+      },
+      {
+        name: "MTA: Windows Operating System Fundamentals",
+        status: "Certified",
+        year: "2017",
+        verificationUrl:
+          "https://www.credly.com/badges/a1351b69-dd31-4a6e-a13f-55deb6d029f1",
+      },
+      {
+        name: "MTA: Windows Server Administration Fundamentals",
+        status: "Certified",
+        year: "2017",
+        verificationUrl:
+          "https://www.credly.com/badges/5fa9a0ad-6f61-441c-87ba-5dc95be3bb58",
+      },
+    ],
+  },
+];
+
+const Certifications: React.FC = () => {
   return (
-    <article className="max-w-[850px] mx-auto px-6 py-14 md:py-16">
-      {/* Page Header */}
-      <header className="mb-14 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-          Certification Roadmap
+    <section className="max-w-6xl mx-auto px-6 py-16">
+      <header className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-slate-900 tracking-tight">
+          Certifications
         </h1>
-        <div className="w-16 h-[2px] bg-slate-300 mx-auto mt-5 mb-6"></div>
-        <p className="max-w-2xl mx-auto text-slate-600 leading-relaxed">
-          This roadmap outlines my structured development path across networking, security operations, cloud infrastructure, and governance-focused practices. Each milestone is pursued with measurable benchmarks and applied validation.
+        <div className="w-16 h-[2px] bg-slate-300 mx-auto mt-4"></div>
+        <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          Credentials organized by capability area. Certifications are tracked with clear status and
+          verification links where available.
         </p>
       </header>
 
-      {/* Roadmap Phases */}
-      <div className="space-y-8 mb-16">
-        {/* Phase I */}
-        <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-          <h2 className="text-xl font-bold text-slate-900 mb-2">Phase I — Core Networking Foundation</h2>
-          <p className="text-sm text-slate-500 mb-6">Networking fundamentals, protocols, troubleshooting, and segmentation.</p>
-          <div className="flex items-center justify-between py-3 border-t border-slate-100">
-            <span className="text-slate-800 font-medium">CompTIA Network+</span>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 border border-slate-300 px-2 py-0.5 rounded">
-              In Progress
-            </span>
-          </div>
-        </section>
-
-        {/* Phase II */}
-        <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-          <h2 className="text-xl font-bold text-slate-900 mb-2">Phase II — Security Fundamentals</h2>
-          <p className="text-sm text-slate-500 mb-6">Threat fundamentals, incident response awareness, and risk controls.</p>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between py-3 border-t border-slate-100">
-              <span className="text-slate-800 font-medium">Google Cybersecurity Certificate</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 border border-slate-300 px-2 py-0.5 rounded">
-                In Progress
-              </span>
+      <div className="grid grid-cols-1 gap-8">
+        {categories.map((cat) => (
+          <div
+            key={cat.title}
+            className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8"
+          >
+            <div className="mb-5">
+              <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
+                {cat.title}
+              </h2>
+              {cat.description && (
+                <p className="mt-2 text-slate-600 leading-relaxed">
+                  {cat.description}
+                </p>
+              )}
             </div>
-            <div className="flex items-center justify-between py-3 border-t border-slate-100">
-              <span className="text-slate-400 font-medium">CompTIA Security+</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 border border-slate-200 px-2 py-0.5 rounded">
-                Planned
-              </span>
+
+            <div className="divide-y divide-slate-100">
+              {cat.items.map((item) => {
+                const badge = badgeStyles(item.status);
+                return (
+                  <div
+                    key={item.name}
+                    className="py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                  >
+                    <div>
+                      <div className="text-slate-900 font-semibold">
+                        {item.name}
+                      </div>
+                      {item.status === "Certified" && item.year && (
+                        <div className="text-sm text-slate-500">
+                          Certified {item.year}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border ${badge.className}`}
+                      >
+                        {badge.icon}
+                        {item.status}
+                      </span>
+
+                      {item.verificationUrl && (
+                        <a
+                          href={item.verificationUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center px-4 py-2 rounded-lg border border-slate-300 bg-white text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+                        >
+                          Verify <ExternalLink className="w-4 h-4 ml-2" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </section>
-
-        {/* Phase III */}
-        <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-          <h2 className="text-xl font-bold text-slate-900 mb-2">Phase III — Cloud & Infrastructure</h2>
-          <p className="text-sm text-slate-500 mb-6">Cloud architecture fundamentals, deployment concepts, and operational governance.</p>
-          <div className="flex items-center justify-between py-3 border-t border-slate-100">
-            <span className="text-slate-400 font-medium">CompTIA Cloud+</span>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 border border-slate-200 px-2 py-0.5 rounded">
-              Planned
-            </span>
-          </div>
-        </section>
+        ))}
       </div>
-
-      {/* Methodology Section */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">How I Approach Skill Development</h2>
-        <div className="bg-slate-50 border border-slate-100 rounded-2xl p-8">
-          <ul className="space-y-4">
-            <li className="flex items-start">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              <span className="text-slate-700 leading-relaxed">Structured study cycles and weekly planning</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              <span className="text-slate-700 leading-relaxed">Hands-on labs and applied validation</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              <span className="text-slate-700 leading-relaxed">Documentation and reflection for retention</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              <span className="text-slate-700 leading-relaxed">Competency checkpoints and re-testing</span>
-            </li>
-            <li className="flex items-start">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              <span className="text-slate-700 leading-relaxed">Weakness tracking and targeted review</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Skills in Active Development */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Skills in Active Development</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 mb-4 pb-2 border-b border-slate-200">Networking</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>Subnetting</li>
-              <li>Routing concepts</li>
-              <li>Troubleshooting workflows</li>
-              <li>Segmentation fundamentals</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 mb-4 pb-2 border-b border-slate-200">Security Operations</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>Incident response lifecycle</li>
-              <li>Log analysis fundamentals</li>
-              <li>Risk framing</li>
-              <li>Documentation discipline</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 mb-4 pb-2 border-b border-slate-200">Cloud</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>IAM fundamentals</li>
-              <li>Secure deployment concepts</li>
-              <li>Shared responsibility model</li>
-              <li>Operational documentation</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Closing Statement */}
-      <footer className="pt-10 border-t border-slate-100 text-center">
-        <p className="text-slate-500 text-sm italic max-w-xl mx-auto">
-          Long term, my development path is oriented toward roles that integrate security execution with governance, operational clarity, and risk-aware decision-making.
-        </p>
-      </footer>
-    </article>
+    </section>
   );
 };
 
-export default Roadmap;
+export default Certifications;
