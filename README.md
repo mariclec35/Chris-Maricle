@@ -8,7 +8,7 @@
 <p>
   <strong>Live Site:</strong>
   <a href="https://chris-maricle.vercel.app/" target="_blank">
-    https://your-domain.com](https://chris-maricle.vercel.app/
+    (https://chris-maricle.vercel.app/
   </a>
 </p>
 
